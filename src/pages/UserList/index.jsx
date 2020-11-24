@@ -1,15 +1,14 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import axios from "axios";
 import { Table, Typography } from "antd";
 
 const UserList = () => {
 	const [users, setUsers] = useState([]);
+	const token = window.localStorage.getItem("authToken");
 
 	useEffect(() => {
-		const token = window.localStorage.getItem("authToken");
-
 		axios
 			.get("https://ka-users-api.herokuapp.com/users", {
 				headers: { Authorization: token },
@@ -17,8 +16,7 @@ const UserList = () => {
 			.then(res => {
 				setUsers(res.data);
 			});
-	}, []);
-	console.log(users);
+	}, [token]);
 
 	const columns = [
 		{
@@ -53,7 +51,7 @@ const UserList = () => {
 
 	return (
 		<div>
-			<Typography.Title>Alunos</Typography.Title>
+			<Typography.Title style={{ color: "white" }}>Alunos</Typography.Title>
 			<Table columns={columns} dataSource={users} />
 		</div>
 	);

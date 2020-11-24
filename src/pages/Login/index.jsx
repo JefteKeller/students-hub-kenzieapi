@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const Login = () => {
+const Login = ({ setIsLogged }) => {
 	const schema = yup.object().shape({
 		user: yup
 			.string()
@@ -23,7 +23,7 @@ const Login = () => {
 			.required("Campo obrigatório"),
 	});
 
-	const { register, handleSubmit } = useForm({
+	const { register, handleSubmit, errors } = useForm({
 		resolver: yupResolver(schema),
 	});
 
@@ -31,16 +31,16 @@ const Login = () => {
 	const history = useHistory();
 
 	const handleForm = data => {
-		console.log(data);
 		axios
 			.post("https://ka-users-api.herokuapp.com/authenticate", { ...data })
 			.then(res => {
 				window.localStorage.setItem("authToken", res.data.auth_token);
+				setIsLogged(true);
 				history.push("/users");
 			})
-			.catch(err =>
-				setLoginMessage(err.response.data.error.user_authentication)
-			);
+			.catch(err => {
+				setLoginMessage(err.response.data.error.user_authentication);
+			});
 	};
 
 	return (
@@ -51,6 +51,8 @@ const Login = () => {
 				)}
 			>
 				<Input placeholder="Usuario" name="user" ref={register} width="80%" />
+				<p style={{ color: "red" }}>{errors.user?.message}</p>
+
 				<Input
 					type="password"
 					placeholder="Senha"
@@ -58,11 +60,13 @@ const Login = () => {
 					ref={register}
 					width="80%"
 				/>
+				<p style={{ color: "red" }}>{errors.password?.message}</p>
+
 				<Button type="submit" bgColor="#0f1cce" width="80%">
 					Enviar
 				</Button>
 			</form>
-			{loginMessage && <p style={{ color: "white" }}>{loginMessage}</p>}
+			{loginMessage && <p style={{ color: "red" }}>{loginMessage}</p>}
 		</FormContainer>
 	);
 };

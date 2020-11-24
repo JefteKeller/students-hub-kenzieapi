@@ -47,7 +47,7 @@ const FeedbacksList = () => {
 
 	return (
 		<div>
-			<Typography.Title>Feedbacks</Typography.Title>
+			<Typography.Title style={{ color: "white" }}>Feedbacks</Typography.Title>
 			<Table columns={columns} dataSource={userFeedbacks} />
 			<div>
 				<Button
@@ -57,7 +57,12 @@ const FeedbacksList = () => {
 					Novo Comentario
 				</Button>
 			</div>
-			<Button type="default" onClick={() => history.push("/users/")}>
+
+			<Button
+				style={{ marginTop: "1rem" }}
+				type="default"
+				onClick={() => history.push("/users")}
+			>
 				Voltar
 			</Button>
 		</div>

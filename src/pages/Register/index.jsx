@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import { FormContainer } from "../../components/FormContainer";
 import { Button } from "../../components/Button";
@@ -36,24 +37,31 @@ const Register = () => {
 	});
 
 	const [registerMessage, setRegisterMessage] = useState("");
+	const history = useHistory();
 
 	const handleForm = data => {
-		// console.log(data);
 		axios
 			.post("https://ka-users-api.herokuapp.com/users", { user: { ...data } })
-			.then(res => setRegisterMessage("Usuario criado com Sucesso!"))
-			.catch(() => setRegisterMessage("Ocorreu um erro"));
+			.then(res => {
+				setRegisterMessage("Usuario criado com Sucesso!");
+				history.push("/login");
+			})
+			.catch(() =>
+				setRegisterMessage(
+					"Ocorreu um erro, revise os Dados e tente novamente."
+				)
+			);
 	};
 
 	return (
-		<FormContainer height="55vh" width="30vw">
+		<FormContainer>
 			<form onSubmit={handleSubmit(handleForm)}>
 				<Input
 					type="text"
 					placeholder="Usuário"
 					name="user"
 					ref={register}
-					width="80%"
+					width="100%"
 				/>
 				<p style={{ color: "red" }}>{errors.user?.message}</p>
 
@@ -62,7 +70,7 @@ const Register = () => {
 					placeholder="Nome Completo"
 					name="name"
 					ref={register}
-					width="80%"
+					width="100%"
 				/>
 				<p style={{ color: "red" }}>{errors.name?.message}</p>
 
@@ -71,7 +79,7 @@ const Register = () => {
 					placeholder="Email "
 					name="email"
 					ref={register}
-					width="80%"
+					width="100%"
 				/>
 				<p style={{ color: "red" }}>{errors.email?.message}</p>
 
@@ -80,7 +88,7 @@ const Register = () => {
 					placeholder="Senha"
 					name="password"
 					ref={register}
-					width="80%"
+					width="100%"
 				/>
 				<p style={{ color: "red" }}>{errors.password?.message}</p>
 
@@ -89,7 +97,7 @@ const Register = () => {
 					placeholder="Confirmar Senha"
 					name="password_confirmation"
 					ref={register}
-					width="80%"
+					width="100%"
 				/>
 				<p style={{ color: "red" }}>{errors.password_confirmation?.message}</p>
 

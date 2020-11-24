@@ -48,7 +48,7 @@ const FeedbackForm = () => {
 
 	return (
 		<div>
-			<FormContainer height="30vh" width="30vw">
+			<FormContainer>
 				<form onSubmit={handleSubmit(handleForm)}>
 					<Input placeholder="Nome" name="name" ref={register} width="80%" />
 					<Input
