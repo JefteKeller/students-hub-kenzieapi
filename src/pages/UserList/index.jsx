@@ -50,9 +50,13 @@ const UserList = () => {
 	];
 
 	return (
-		<div>
+		<div className="antdTable">
 			<Typography.Title style={{ color: "white" }}>Alunos</Typography.Title>
-			<Table columns={columns} dataSource={users} />
+			<Table
+				rowKey={record => record.id}
+				columns={columns}
+				dataSource={users}
+			/>
 		</div>
 	);
 };

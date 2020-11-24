@@ -46,9 +46,13 @@ const FeedbacksList = () => {
 	];
 
 	return (
-		<div>
+		<div className="antdTable">
 			<Typography.Title style={{ color: "white" }}>Feedbacks</Typography.Title>
-			<Table columns={columns} dataSource={userFeedbacks} />
+			<Table
+				rowKey={record => record.id}
+				columns={columns}
+				dataSource={userFeedbacks}
+			/>
 			<div>
 				<Button
 					type="primary"

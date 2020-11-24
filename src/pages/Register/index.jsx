@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { FormContainer } from "../../components/FormContainer";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 
@@ -54,7 +53,7 @@ const Register = () => {
 	};
 
 	return (
-		<FormContainer>
+		<div className="formContainer">
 			<form onSubmit={handleSubmit(handleForm)}>
 				<Input
 					type="text"
@@ -106,7 +105,7 @@ const Register = () => {
 				</Button>
 			</form>
 			{registerMessage && <p style={{ color: "white" }}>{registerMessage}</p>}
-		</FormContainer>
+		</div>
 	);
 };
 

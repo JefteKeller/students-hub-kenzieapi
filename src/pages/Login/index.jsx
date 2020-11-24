@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { FormContainer } from "../../components/FormContainer";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 
@@ -44,7 +43,7 @@ const Login = ({ setIsLogged }) => {
 	};
 
 	return (
-		<FormContainer height="30vh" width="30vw">
+		<div className="formContainer">
 			<form
 				onSubmit={handleSubmit(handleForm, err =>
 					setLoginMessage(err.password.message)
@@ -67,7 +66,7 @@ const Login = ({ setIsLogged }) => {
 				</Button>
 			</form>
 			{loginMessage && <p style={{ color: "red" }}>{loginMessage}</p>}
-		</FormContainer>
+		</div>
 	);
 };
 

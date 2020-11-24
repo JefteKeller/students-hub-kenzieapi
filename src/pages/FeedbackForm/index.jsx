@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
 
-import { FormContainer } from "../../components/FormContainer";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 
@@ -47,28 +46,34 @@ const FeedbackForm = () => {
 	};
 
 	return (
-		<div>
-			<FormContainer>
-				<form onSubmit={handleSubmit(handleForm)}>
-					<Input placeholder="Nome" name="name" ref={register} width="80%" />
-					<Input
-						placeholder="Comentario"
-						name="comment"
-						ref={register}
-						width="80%"
-					/>
-					<Input
-						type="number"
-						placeholder="Nota"
-						name="grade"
-						ref={register}
-						width="80%"
-					/>
-					<Button type="submit" bgColor="#0f1cce" width="80%">
-						Enviar
-					</Button>
-				</form>
-			</FormContainer>
+		<div className="formContainer">
+			<form onSubmit={handleSubmit(handleForm)}>
+				<Input
+					placeholder="Nome"
+					name="name"
+					ref={register}
+					width="80%"
+					margin="0.3rem"
+				/>
+				<Input
+					placeholder="Comentario"
+					name="comment"
+					ref={register}
+					width="80%"
+					margin="0.3rem"
+				/>
+				<Input
+					type="number"
+					placeholder="Nota"
+					name="grade"
+					ref={register}
+					width="80%"
+					margin="0.3rem"
+				/>
+				<Button type="submit" bgColor="#0f1cce" width="70%">
+					Enviar
+				</Button>
+			</form>
 
 			<Button onClick={() => history.push(`/users/feedbacks/${params.id}`)}>
 				Voltar
