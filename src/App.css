@@ -28,7 +28,22 @@
   height: 100%;
 }
 
-@media screen and (min-width:600px) {
+
+.ant-table-thead>tr>th,
+.ant-table-tbody>tr>td {
+  width: 20% !important;
+  word-break: break-word;
+  -ms-word-break: break-all;
+}
+
+
+.ant-table-cell {
+  padding-left: 0.3rem !important;
+  padding-right: 0.3rem !important;
+}
+
+
+@media screen and (min-width:700px) {
 
   .formContainer {
     width: 60%;
@@ -37,4 +52,10 @@
   .antdTable {
     width: 80%;
   }
+
+
+  .ant-table-cell {
+    padding: 1rem !important;
+  }
+
 }
