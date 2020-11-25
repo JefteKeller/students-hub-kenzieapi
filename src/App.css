@@ -53,6 +53,10 @@
     width: 80%;
   }
 
+  .ant-table-thead>tr>th,
+  .ant-table-tbody>tr>td {
+    width: auto !important;
+  }
 
   .ant-table-cell {
     padding: 1rem !important;
